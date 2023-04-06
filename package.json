@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "serve front_end"
+  },
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}
