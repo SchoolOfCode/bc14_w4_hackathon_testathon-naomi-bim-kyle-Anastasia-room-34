@@ -22,7 +22,7 @@ test("Clicking calendar icon", async ({ page }) => {
   await page.goto("http://localhost:3000");
   const input = page.getByRole("textbox", { name: "Completion date" });
   //await input.click();
-  await input.type("16/05/2023");
+  await input.type("2023-05-16");
   //await expect(input.click).;
   await expect(input).toHaveValue(/2023-05-16/);
 });
@@ -34,13 +34,14 @@ Overall, this test case navigates to a web page, locates an input element, types
 
 test("add todo to list", async ({ page }) => {
   await page.goto("http://localhost:3000");
-  const input = page.getByRole("textbox", { name: "Task" });
-  await input.type("Wash Dog");
-  await expect(input).toHaveValue("Wash Dog");
-  await page.goto("http://localhost:3000");
-  const input = page.getByRole("textbox", { name: "Completion date" });
-  //await input.click();
-  await input.type("16/05/2023");
-  //await expect(input.click).;
-  await expect(input).toHaveValue(/2023-05-16/);
+    const inputToDo = page.getByRole("textbox", { name: "Task" });
+  await inputToDo.type("Wash Dog");
+  await expect(inputToDo).toHaveValue("Wash Dog");
+    const inputDate = page.getByRole("textbox", { name: "Completion date" });
+  await inputDate.type("2023-05-16");
+  await expect(inputDate).toHaveValue(/2023-05-16/);
+    const createButton = page.getByRole("button", { name: "➕ Create!" });
+    const list = page.getByRole("list", { name: "Existing todos" } )
+  await createButton.click();
+  await expect(list).toHaveValue("Wash Dog", /2023-05-16/);
 });
