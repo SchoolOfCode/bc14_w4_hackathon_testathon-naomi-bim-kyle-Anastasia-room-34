@@ -34,14 +34,17 @@ Overall, this test case navigates to a web page, locates an input element, types
 
 test("add todo to list", async ({ page }) => {
   await page.goto("http://localhost:3000");
-    const inputToDo = page.getByRole("textbox", { name: "Task" });
+  const inputToDo = page.getByRole("textbox", { name: "Task" });
   await inputToDo.type("Wash Dog");
   await expect(inputToDo).toHaveValue("Wash Dog");
-    const inputDate = page.getByRole("textbox", { name: "Completion date" });
-  await inputDate.type("2023-05-16");
+  const inputDate = page.getByRole("textbox", { name: "Completion date" });
+  await inputDate.type("16/05/2023");
   await expect(inputDate).toHaveValue(/2023-05-16/);
-    const createButton = page.getByRole("button", { name: "➕ Create!" });
-    const list = page.getByRole("list", { name: "Existing todos" } )
+  const createButton = page.getByRole("button", { name: "➕ Create!" });
+  const list = page.getByRole("list", { name: "Existing todos" });
   await createButton.click();
-  await expect(list).toHaveValue("Wash Dog", /2023-05-16/);
+  await expect(list).toHaveValue({
+    task: task,
+    completionDate: completionDate,
+  });
 });
