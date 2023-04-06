@@ -69,3 +69,8 @@ test("add todo to list", async ({ page }) => {
 //selecting the button -> clicking the button...
 //we're yet to get the computer to CHECK that what it has entered is what it SHOULD have entered
     //but we haven't yet figured out how to present the info in line 60 that it can read
+
+    //WE CAN LOCATE THE LIST ITEM BY...
+    //inspecting the page when the list item has been added - there is an element called "span" which holds the list item
+    //the team whose code we screenshotted instead told the computer to look for info in two different elements and see if it contains what we're looking for.
+    //see screenshot
